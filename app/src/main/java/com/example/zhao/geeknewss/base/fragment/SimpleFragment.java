@@ -33,8 +33,13 @@ public abstract class SimpleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(createLayoutId(), null);
         bind = ButterKnife.bind(this, view);
+        oncreateview();
         initData();
         return view;
+    }
+
+    public void oncreateview() {
+
     }
 
     //懒加载

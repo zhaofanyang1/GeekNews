@@ -1,8 +1,9 @@
 package com.example.zhao.geeknewss.https;
 
 
-import com.example.zhao.geeknewss.app.Myapp;
+import com.example.zhao.geeknewss.app.MyApp;
 import com.example.zhao.geeknewss.utils.SystemUtil;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class HttpManager {
 
     private OkHttpClient getOkhttpClient() {
         //缓存文件定义：缓存到当前项目的包路径下
-        Cache cache = new Cache(new File(Myapp.getMyapp().getCacheDir(), "Cache"), 1024 * 1024 * 10);
+        Cache cache = new Cache(new File(MyApp.getInstance().getCacheDir(), "Cache"), 1024 * 1024 * 10);
         //网络请求的Log日志输出
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);

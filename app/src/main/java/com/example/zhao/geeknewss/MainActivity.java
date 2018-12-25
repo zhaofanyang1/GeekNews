@@ -1,9 +1,10 @@
 package com.example.zhao.geeknewss;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,17 +14,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.zhao.geeknewss.activitys.ZhihuActivity;
+
+import com.example.zhao.geeknewss.fragments.gank.GankFragment;
+import com.example.zhao.geeknewss.fragments.shujuzhihui.ShuJuZhiHuiFragment;
+import com.example.zhao.geeknewss.fragments.v2ex.V2EXFragment;
+import com.example.zhao.geeknewss.fragments.weichat.WeiCharFragment;
+import com.example.zhao.geeknewss.fragments.zhihu.ZhihuMainFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -81,22 +90,32 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent intent = new Intent(this, ZhihuActivity.class);
-            startActivity(intent);
+            toolbar.setTitle("知乎日报");
+            fragmentTransaction.replace(R.id.fl_content, new ZhihuMainFragment()).commit();
         } else if (id == R.id.nav_gallery) {
-
+            toolbar.setTitle("微信精选");
+            fragmentTransaction.replace(R.id.fl_content, new WeiCharFragment()).commit();
         } else if (id == R.id.nav_slideshow) {
-
+            toolbar.setTitle("干活集中营");
+            fragmentTransaction.replace(R.id.fl_content, new GankFragment()).commit();
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            toolbar.setTitle("数据智汇");
+            fragmentTransaction.replace(R.id.fl_content, new ShuJuZhiHuiFragment()).commit();
+        } else if (id == R.id.nav_v2ex) {
+            toolbar.setTitle("V2EX");
+            fragmentTransaction.replace(R.id.fl_content, new V2EXFragment()).commit();
+        } else if (id == R.id.nav_collecting) {
+            Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_set) {
+            Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_about) {
+            Toast.makeText(this, "关于", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

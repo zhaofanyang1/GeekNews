@@ -8,18 +8,19 @@ import android.view.View;
 
 import com.example.zhao.geeknewss.base.presenter.BasePresenter;
 
-public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragment {
+public abstract class BaseFragment<V, P extends BasePresenter<V>> extends SimpleFragment {
 
     public P presenter;
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void oncreateview() {
+        super.oncreateview();
         presenter = createPresenter();
         if (presenter != null) {
             presenter.bingView((V) this);
         }
     }
+
     protected abstract P createPresenter();
     @Override
     public void onDestroy() {

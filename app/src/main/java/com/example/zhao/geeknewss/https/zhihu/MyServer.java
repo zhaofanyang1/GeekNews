@@ -1,13 +1,18 @@
-package com.example.zhao.geeknewss.https;
+package com.example.zhao.geeknewss.https.zhihu;
 
 import com.example.zhao.geeknewss.beans.zhihu.DailyListBean;
+import com.example.zhao.geeknewss.beans.zhihu.HotListBean;
+import com.example.zhao.geeknewss.beans.zhihu.SectionListBean;
+
+import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 
-public interface ZhiHuServer {
+public interface MyServer {
     String HOST = "http://news-at.zhihu.com/api/4/";
 
     /**
@@ -44,7 +49,7 @@ public interface ZhiHuServer {
      * 专栏日报SectionListBean
      */
     @GET("sections")
-    Observable<String> getSectionList();
+    Observable<SectionListBean> getSectionList();
 
     /**
      * 专栏日报详情SectionChildListBean
@@ -56,7 +61,7 @@ public interface ZhiHuServer {
      * 热门日报HotListBean
      */
     @GET("news/hot")
-    Observable<String> getHotList();
+    Observable<HotListBean> getHotList();
 
     /**
      * 日报详情ZhihuDetailBean
