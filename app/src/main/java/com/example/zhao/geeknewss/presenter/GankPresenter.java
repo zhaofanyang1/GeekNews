@@ -1,5 +1,7 @@
 package com.example.zhao.geeknewss.presenter;
 
+import android.util.Log;
+
 import com.example.zhao.geeknewss.Request;
 import com.example.zhao.geeknewss.base.presenter.IBasepresenter;
 import com.example.zhao.geeknewss.beans.zhihu.gank.AndroidBean;
@@ -29,13 +31,13 @@ public class GankPresenter<V extends MyView> extends IBasepresenter<V> implement
                 IosBean iosBean = (IosBean) o;
                 v1.showScuess(iosBean);
                 break;
-            case FULIBEAN:
-                FuLiBean fuLiBean = (FuLiBean) o;
-                v1.showScuess(fuLiBean);
-                break;
             case QIANDUANBEAN:
                 QianDuanBean qianDuanBean = (QianDuanBean) o;
                 v1.showScuess(qianDuanBean);
+                break;
+            case FULIBEAN:
+                FuLiBean fuLiBean = (FuLiBean) o;
+                v1.showScuess(fuLiBean);
                 break;
         }
     }

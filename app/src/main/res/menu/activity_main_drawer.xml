@@ -4,12 +4,15 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item android:title="资讯" />
         <item
             android:id="@+id/nav_camera"
+
             android:icon="@drawable/ic_menu_camera"
             android:title="知乎日报" />
         <item
             android:id="@+id/nav_gallery"
+
             android:icon="@drawable/ic_menu_gallery"
             android:title="微信精选" />
         <item

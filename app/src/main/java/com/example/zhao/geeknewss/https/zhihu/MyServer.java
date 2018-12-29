@@ -2,6 +2,7 @@ package com.example.zhao.geeknewss.https.zhihu;
 
 import com.example.zhao.geeknewss.beans.zhihu.DailyListBean;
 import com.example.zhao.geeknewss.beans.zhihu.HotListBean;
+import com.example.zhao.geeknewss.beans.zhihu.SectionChildListBean;
 import com.example.zhao.geeknewss.beans.zhihu.SectionListBean;
 
 import java.util.Map;
@@ -14,7 +15,11 @@ import retrofit2.http.QueryMap;
 
 public interface MyServer {
     String HOST = "http://news-at.zhihu.com/api/4/";
+    String HOSTS = "https://news-at.zhihu.com/api/4/";
 
+    //http://news-at.zhihu.com/api/4/
+    //https://news-at.zhihu.com/api/4/section/34
+    //https://news-at.zhihu.com/api/4/section/0
     /**
      * 启动界面图片
      */
@@ -55,7 +60,7 @@ public interface MyServer {
      * 专栏日报详情SectionChildListBean
      */
     @GET("section/{id}")
-    Observable<String> getSectionChildList(@Path("id") int id);
+    Observable<SectionChildListBean> getSectionChildList(@Path("id") int id);
 
     /**
      * 热门日报HotListBean

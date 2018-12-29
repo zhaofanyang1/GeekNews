@@ -23,7 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.CalendarActivity"></activity>
+        <activity
+            android:name=".activitys.CalendarActivity"
+            android:label="@string/title_activity_calendar"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activitys.WebViewActivity" />
+        <activity android:name=".activitys.WebActivity" />
+        <activity android:name=".activitys.SectionChildActivity"></activity>
     </application>
 
 </manifest>

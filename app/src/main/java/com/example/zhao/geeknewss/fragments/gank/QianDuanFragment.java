@@ -1,12 +1,7 @@
 package com.example.zhao.geeknewss.fragments.gank;
 
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -19,12 +14,8 @@ import android.widget.TextView;
 
 import com.example.zhao.geeknewss.R;
 import com.example.zhao.geeknewss.Request;
-import com.example.zhao.geeknewss.adapters.gankadapter.AndroidAdapter;
-import com.example.zhao.geeknewss.adapters.gankadapter.IosAdapter;
 import com.example.zhao.geeknewss.adapters.gankadapter.QianduanAdapter;
 import com.example.zhao.geeknewss.base.fragment.BaseFragment;
-import com.example.zhao.geeknewss.beans.zhihu.gank.AndroidBean;
-import com.example.zhao.geeknewss.beans.zhihu.gank.IosBean;
 import com.example.zhao.geeknewss.beans.zhihu.gank.QianDuanBean;
 import com.example.zhao.geeknewss.presenter.GankPresenter;
 import com.example.zhao.geeknewss.view.MyView;
@@ -37,14 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>> implements MyView, XRecyclerView.LoadingListener {
-
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-    Unbinder unbinder;
+public class QianDuanFragment extends BaseFragment<MyView, GankPresenter<MyView>> implements MyView, XRecyclerView.LoadingListener {
     @BindView(R.id.iv_tech_blur)
     ImageView ivTechBlur;
     @BindView(R.id.tv_tech_copyright)
@@ -53,31 +37,14 @@ public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>>
     AppBarLayout techAppbar;
     @BindView(R.id.idGankXy)
     XRecyclerView idGankXy;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
-    private String title;
-    private List<AndroidBean.ResultsBean> list1 = new ArrayList<>();
+    Unbinder unbinder;
     private int page = 1;
-    private AndroidAdapter androidAdapter;
-
-    public ANDROIDFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    protected void initData() {
-        androidAdapter = new AndroidAdapter(list1, mActivity);
-        idGankXy.setAdapter(androidAdapter);
-        idGankXy.setLayoutManager(new LinearLayoutManager(mActivity));
-        idGankXy.setLoadingListener(this);
-        presenter.getGank(Request.ANDROIDBEAN, page);
-
-    }
-
-    @Override
-    public int createLayoutId() {
-        return R.layout.fragment_android;
-    }
+    private QianduanAdapter qianduanAdapter;
+    private List<QianDuanBean.ResultsBean> list3 = new ArrayList<>();
 
     @Override
     protected GankPresenter<MyView> createPresenter() {
@@ -85,15 +52,46 @@ public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>>
     }
 
     @Override
+    protected void initData() {
+        qianduanAdapter = new QianduanAdapter(list3, mActivity);
+        idGankXy.setAdapter(qianduanAdapter);
+        idGankXy.setLayoutManager(new LinearLayoutManager(mActivity));
+        idGankXy.setLoadingListener(this);
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            load();
+        }
+    }
+
+    /*
+     *
+     * TODO需要就加载
+     * */
+    public void load() {
+        presenter.getGank(Request.QIANDUANBEAN, page);
+    }
+
+    @Override
+    public int createLayoutId() {
+        return R.layout.fragment_qianduan;
+    }
+
+    @Override
     public void showScuess(Object o) {
-        AndroidBean androidBean = (AndroidBean) o;
-        list1.addAll(androidBean.getResults());
-        androidAdapter.notifyDataSetChanged();
+        QianDuanBean qianDuanBean = (QianDuanBean) o;
+        list3.addAll(qianDuanBean.getResults());
+        qianduanAdapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void showError(String error) {
-        Log.e("ANDROIDFragment", error);
+        Log.e("QianDuanFragment", error);
     }
 
     @Override

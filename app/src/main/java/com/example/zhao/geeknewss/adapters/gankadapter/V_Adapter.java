@@ -10,7 +10,6 @@ import java.util.List;
 public class V_Adapter extends FragmentStatePagerAdapter {
     private List<Fragment> fs;
     private List<String> title;
-
     public V_Adapter(FragmentManager fm, List<Fragment> fs, List<String> title) {
         super(fm);
         this.fs = fs;

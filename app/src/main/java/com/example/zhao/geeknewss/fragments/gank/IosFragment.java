@@ -1,12 +1,7 @@
 package com.example.zhao.geeknewss.fragments.gank;
 
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -19,15 +14,12 @@ import android.widget.TextView;
 
 import com.example.zhao.geeknewss.R;
 import com.example.zhao.geeknewss.Request;
-import com.example.zhao.geeknewss.adapters.gankadapter.AndroidAdapter;
 import com.example.zhao.geeknewss.adapters.gankadapter.IosAdapter;
-import com.example.zhao.geeknewss.adapters.gankadapter.QianduanAdapter;
 import com.example.zhao.geeknewss.base.fragment.BaseFragment;
-import com.example.zhao.geeknewss.beans.zhihu.gank.AndroidBean;
 import com.example.zhao.geeknewss.beans.zhihu.gank.IosBean;
-import com.example.zhao.geeknewss.beans.zhihu.gank.QianDuanBean;
 import com.example.zhao.geeknewss.presenter.GankPresenter;
 import com.example.zhao.geeknewss.view.MyView;
+import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
@@ -37,14 +29,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>> implements MyView, XRecyclerView.LoadingListener {
+public class IosFragment extends BaseFragment<MyView, GankPresenter<MyView>> implements MyView, XRecyclerView.LoadingListener {
 
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-    Unbinder unbinder;
     @BindView(R.id.iv_tech_blur)
     ImageView ivTechBlur;
     @BindView(R.id.tv_tech_copyright)
@@ -53,31 +39,14 @@ public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>>
     AppBarLayout techAppbar;
     @BindView(R.id.idGankXy)
     XRecyclerView idGankXy;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
-    private String title;
-    private List<AndroidBean.ResultsBean> list1 = new ArrayList<>();
+    Unbinder unbinder;
+    private List<IosBean.ResultsBean> list = new ArrayList<>();
+    private IosAdapter iosAdapter;
     private int page = 1;
-    private AndroidAdapter androidAdapter;
-
-    public ANDROIDFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    protected void initData() {
-        androidAdapter = new AndroidAdapter(list1, mActivity);
-        idGankXy.setAdapter(androidAdapter);
-        idGankXy.setLayoutManager(new LinearLayoutManager(mActivity));
-        idGankXy.setLoadingListener(this);
-        presenter.getGank(Request.ANDROIDBEAN, page);
-
-    }
-
-    @Override
-    public int createLayoutId() {
-        return R.layout.fragment_android;
-    }
 
     @Override
     protected GankPresenter<MyView> createPresenter() {
@@ -85,15 +54,30 @@ public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>>
     }
 
     @Override
+    protected void initData() {
+        iosAdapter = new IosAdapter(list, mActivity);
+        idGankXy.setAdapter(iosAdapter);
+        idGankXy.setLayoutManager(new LinearLayoutManager(mActivity));
+        idGankXy.setLoadingListener(this);
+        presenter.getGank(Request.IOSBEAN, page);
+    }
+    @Override
+    public int createLayoutId() {
+        return R.layout.fragment_ios;
+    }
+
+    @Override
     public void showScuess(Object o) {
-        AndroidBean androidBean = (AndroidBean) o;
-        list1.addAll(androidBean.getResults());
-        androidAdapter.notifyDataSetChanged();
+        IosBean iosBean = (IosBean) o;
+        if (iosBean.getResults() != null) {
+            list.addAll(iosBean.getResults());
+        }
+        iosAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showError(String error) {
-        Log.e("ANDROIDFragment", error);
+        Log.e("IosFragment", error);
     }
 
     @Override
@@ -104,20 +88,6 @@ public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>>
     @Override
     public void HideProgressBar() {
         progressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.example.zhao.geeknewss.https;
 
 import com.example.zhao.geeknewss.https.gank.GankServer;
+import com.example.zhao.geeknewss.https.shju.ShuJuServer;
 import com.example.zhao.geeknewss.https.weichat.WeiServer;
 import com.example.zhao.geeknewss.https.zhihu.MyServer;
-import com.example.zhao.geeknewss.modle.GankModle;
 
 public class ApiManager {
     private static MyServer myServer;
@@ -22,6 +22,24 @@ public class ApiManager {
             }
         }
         return myServer;
+    }
+
+    /**
+     * 获取知乎专栏详情Api接口对象
+     *
+     * @return
+     */
+    private static MyServer server;
+
+    public static MyServer getMyServers() {
+        if (server == null) {
+            synchronized (ApiManager.class) {
+                if (server == null) {
+                    server = HttpManager.getHttpUtils().getServer(MyServer.HOSTS, MyServer.class);
+                }
+            }
+        }
+        return server;
     }
 
 
@@ -52,12 +70,30 @@ public class ApiManager {
 
     public static GankServer getGankServer() {
         if (gankServer == null) {
-            synchronized (ApiManager.class) {
+            synchronized (GankServer.class) {
                 if (gankServer == null) {
                     gankServer = HttpManager.getHttpUtils().getServer(GankServer.URl, GankServer.class);
                 }
             }
         }
         return gankServer;
+    }
+
+    /**
+     * 获取聚合数据Api接口对象
+     *
+     * @return
+     */
+    private static ShuJuServer shuJuServer;
+
+    public static ShuJuServer getShuJuServer() {
+        if (shuJuServer == null) {
+            synchronized (ApiManager.class) {
+                if (shuJuServer == null) {
+                    shuJuServer = HttpManager.getHttpUtils().getServer(ShuJuServer.JuheUrl, ShuJuServer.class);
+                }
+            }
+        }
+        return shuJuServer;
     }
 }

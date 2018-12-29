@@ -34,12 +34,20 @@ public class SectionAdapter extends XRecyclerView.Adapter<SectionAdapter.Section
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SectionHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SectionHolder holder, final int position) {
         SectionListBean.DataBean dataBean = list.get(position);
         holder.description.setText(dataBean.getDescription());
         holder.name.setText(dataBean.getName());
         RequestOptions override = RequestOptions.bitmapTransform(new RoundedCorners(60)).override(300, 600);
         Glide.with(context).load(dataBean.getThumbnail()).apply(override).into(holder.image);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (OnClickListener != null) {
+                    OnClickListener.show(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -58,5 +66,15 @@ public class SectionAdapter extends XRecyclerView.Adapter<SectionAdapter.Section
             image = itemView.findViewById(R.id.id_sertion_image);
             name = itemView.findViewById(R.id.id_sertion_name);
         }
+    }
+
+    public OnClickListener OnClickListener;
+
+    public void setOnClickListener(SectionAdapter.OnClickListener onClickListener) {
+        OnClickListener = onClickListener;
+    }
+
+    public interface OnClickListener {
+        void show(int position);
     }
 }

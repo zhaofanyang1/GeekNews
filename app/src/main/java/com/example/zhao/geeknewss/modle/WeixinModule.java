@@ -17,15 +17,11 @@ public class WeixinModule {
         void setShowWeiChatBean(T t, Request request);
     }
 
-    public void getData(final WeixinCallback weixinCallback,final Request request,int page) {
+    public void getData(final WeixinCallback weixinCallback, final Request request, int page, Map<String, Object> map) {
         switch (request) {
             case WEICHAT:
                 weixinCallback.setshowProgressBar();
-                Map<String, String> map = new HashMap<>();
                 //key=52b7ec3471ac3bec6846577e79f20e4c&num=10&page=1
-                map.put("key", "52b7ec3471ac3bec6846577e79f20e4c");
-                map.put("num", "10");
-                map.put("page", "1" + page);
                 ApiManager.getWeiServer().getWeiXin(map).compose(RxUtils.<WeiChatBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<WeiChatBean>(weixinCallback) {
                     @Override
                     public void onNext(WeiChatBean value) {

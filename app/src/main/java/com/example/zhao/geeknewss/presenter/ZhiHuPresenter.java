@@ -2,12 +2,16 @@ package com.example.zhao.geeknewss.presenter;
 
 import com.example.zhao.geeknewss.Request;
 import com.example.zhao.geeknewss.base.presenter.IBasepresenter;
+import com.example.zhao.geeknewss.beans.zhihu.DailyBeforeListBean;
 import com.example.zhao.geeknewss.beans.zhihu.DailyListBean;
 import com.example.zhao.geeknewss.beans.zhihu.HotListBean;
+import com.example.zhao.geeknewss.beans.zhihu.SectionChildListBean;
 import com.example.zhao.geeknewss.beans.zhihu.SectionListBean;
 import com.example.zhao.geeknewss.beans.zhihu.weichat.WeiChatBean;
 import com.example.zhao.geeknewss.modle.ZhiHuModuld;
 import com.example.zhao.geeknewss.view.MyView;
+
+import java.util.Map;
 
 public class ZhiHuPresenter<V extends MyView> extends IBasepresenter<V> implements ZhiHuModuld.ZhihuCallback {
 
@@ -21,9 +25,9 @@ public class ZhiHuPresenter<V extends MyView> extends IBasepresenter<V> implemen
         }
     }
 
-    public void getData(Request request) {
+    public void getData(Request request, int id) {
         if (v1 != null) {
-            Moduld.getData(this, request);
+            Moduld.getData(this, request, null, id);
         }
     }
 
@@ -42,6 +46,10 @@ public class ZhiHuPresenter<V extends MyView> extends IBasepresenter<V> implemen
                 case SECTION:
                     SectionListBean sectionListBean = (SectionListBean) o;
                     v1.showScuess(sectionListBean);
+                    break;
+                case SECTIONChILDLIST:
+                    SectionChildListBean sectionChildListBean = (SectionChildListBean) o;
+                    v1.showScuess(sectionChildListBean);
                     break;
                 case HOT:
                     HotListBean hotListBean = (HotListBean) o;

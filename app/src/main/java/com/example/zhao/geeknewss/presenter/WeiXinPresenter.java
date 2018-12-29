@@ -6,14 +6,16 @@ import com.example.zhao.geeknewss.beans.zhihu.weichat.WeiChatBean;
 import com.example.zhao.geeknewss.modle.WeixinModule;
 import com.example.zhao.geeknewss.view.MyView;
 
+import java.util.Map;
+
 public class WeiXinPresenter<V extends MyView> extends IBasepresenter<V> implements WeixinModule.WeixinCallback {
 
     WeixinModule weixinModule = new WeixinModule();
 
-    public void getWeiChatBean(Request request, int page) {
+    public void getWeiChatBean(Request request, int page, Map<String, Object> map) {
         //v1是弱引用对象
         if (v1 != null) {
-            weixinModule.getData(this, request, page);
+            weixinModule.getData(this, request, page, map);
         }
     }
 

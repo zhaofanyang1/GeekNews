@@ -1,5 +1,7 @@
 package com.example.zhao.geeknewss.modle;
 
+import android.util.Log;
+
 import com.example.zhao.geeknewss.Request;
 import com.example.zhao.geeknewss.base.modle.HttpFinishCallback;
 import com.example.zhao.geeknewss.beans.zhihu.gank.AndroidBean;
@@ -19,7 +21,9 @@ public class GankModle {
         switch (request) {
             case ANDROIDBEAN:
                 gankCallback.setshowProgressBar();
-                ApiManager.getGankServer().getAndroidBean("" + page, "zfy").compose(RxUtils.<AndroidBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<AndroidBean>(gankCallback) {
+                ApiManager.getGankServer().getAndroidBean("" + page, "zfy")
+                        .compose(RxUtils.<AndroidBean>rxObserableSchedulerHelper())
+                        .subscribe(new BaseObserver<AndroidBean>(gankCallback) {
                     @Override
                     public void onNext(AndroidBean value) {
                         gankCallback.setShowGank(value, request);
@@ -27,8 +31,9 @@ public class GankModle {
                 });
                 break;
             case IOSBEAN:
+
                 gankCallback.setshowProgressBar();
-                ApiManager.getGankServer().getIosBean("" + page, "zfy").compose(RxUtils.<IosBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<IosBean>(gankCallback) {
+                ApiManager.getGankServer().getIosBean("1" + page).compose(RxUtils.<IosBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<IosBean>(gankCallback) {
                     @Override
                     public void onNext(IosBean value) {
                         gankCallback.setShowGank(value, request);
@@ -37,7 +42,7 @@ public class GankModle {
                 break;
             case QIANDUANBEAN:
                 gankCallback.setshowProgressBar();
-                ApiManager.getGankServer().getQianDuanBean("" + page, "zfy").compose(RxUtils.<QianDuanBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<QianDuanBean>(gankCallback) {
+                ApiManager.getGankServer().getQianDuanBean("" + page).compose(RxUtils.<QianDuanBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<QianDuanBean>(gankCallback) {
                     @Override
                     public void onNext(QianDuanBean value) {
                         gankCallback.setShowGank(value, request);
@@ -46,7 +51,7 @@ public class GankModle {
                 break;
             case FULIBEAN:
                 gankCallback.setshowProgressBar();
-                ApiManager.getGankServer().getFuLiBean("" + page, "zfy").compose(RxUtils.<FuLiBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<FuLiBean>(gankCallback) {
+                ApiManager.getGankServer().getFuLiBean("" + page).compose(RxUtils.<FuLiBean>rxObserableSchedulerHelper()).subscribe(new BaseObserver<FuLiBean>(gankCallback) {
                     @Override
                     public void onNext(FuLiBean value) {
                         gankCallback.setShowGank(value, request);

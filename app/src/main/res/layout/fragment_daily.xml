@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DailyFragment">
+    tools:context=".fragments.zhihu.DailyFragment">
 
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="260dp">
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/title_tu"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -19,7 +19,7 @@
             android:layout_marginVertical="200dp"
             android:text="大"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="20dp" />-->
     </com.youth.banner.Banner>
 
     <TextView
@@ -41,6 +41,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_calender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#FF4081"
+        android:src="@mipmap/ic_fab_calendar"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"

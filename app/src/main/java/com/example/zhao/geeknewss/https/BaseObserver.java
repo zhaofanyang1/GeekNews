@@ -1,6 +1,11 @@
 package com.example.zhao.geeknewss.https;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.example.zhao.geeknewss.base.modle.HttpFinishCallback;
 
 import io.reactivex.Observer;
@@ -33,6 +38,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
         }
         if (httpFinishCallback != null) {
             if (e instanceof HttpException) {
+                Log.e("eqwwqe",((HttpException) e).message());
                 httpFinishCallback.setError("网络请求错误");
             }
         }

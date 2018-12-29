@@ -22,14 +22,14 @@ public interface GankServer {
 
     @GET("Android/10/{page}")
     Observable<AndroidBean> getAndroidBean(@Path("page") String page1, @Header("User-Agent") String head);
-
+//https://gank.io/api/data/iOS/10/2
     @GET("iOS/10/{page}")
-    Observable<IosBean> getIosBean(@Path("page") String page2, @Header("User-Agent") String head);
+    Observable<IosBean> getIosBean(@Path("page") String page2);
 
     @GET("前端/10/{page}")
-    Observable<QianDuanBean> getQianDuanBean(@Path("page") String page3, @Header("User-Agent") String head);
+    Observable<QianDuanBean> getQianDuanBean(@Path("page") String page3);
 
     @GET("福利/10/{page}")
-    Observable<FuLiBean> getFuLiBean(@Path("page") String page4, @Header("User-Agent") String head);
+    Observable<FuLiBean> getFuLiBean(@Path("page") String page4);
 
 }

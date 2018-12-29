@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,12 +35,20 @@ public class WeiChatAdapter extends XRecyclerView.Adapter<WeiChatAdapter.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WeiChatBean.NewslistBean newslistBean = list.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        final WeiChatBean.NewslistBean newslistBean = list.get(position);
         holder.title.setText(newslistBean.getTitle());
         holder.ctime.setText(newslistBean.getCtime());
-        holder.ctime.setText(newslistBean.getDescription());
+        holder.description.setText(newslistBean.getDescription());
         Glide.with(context).load(newslistBean.getPicUrl()).into(holder.image);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (OnclickListener != null) {
+                    OnclickListener.OnClickListener(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -59,5 +69,15 @@ public class WeiChatAdapter extends XRecyclerView.Adapter<WeiChatAdapter.ViewHol
             description = itemView.findViewById(R.id.tv_weichat_item_description);
             ctime = itemView.findViewById(R.id.tv_weichat_item_ctime);
         }
+    }
+
+    public OnClickListener OnclickListener;
+
+    public void setOnclickListener(OnClickListener onclickListener) {
+        OnclickListener = onclickListener;
+    }
+
+    public interface OnClickListener {
+        void OnClickListener(int position);
     }
 }

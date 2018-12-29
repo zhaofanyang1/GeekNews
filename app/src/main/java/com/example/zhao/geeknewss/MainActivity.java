@@ -19,30 +19,39 @@ import android.widget.Toast;
 
 import com.example.zhao.geeknewss.fragments.gank.GankFragment;
 import com.example.zhao.geeknewss.fragments.shujuzhihui.ShuJuZhiHuiFragment;
+import com.example.zhao.geeknewss.fragments.shujuzhihui.ZhihuiFragment;
 import com.example.zhao.geeknewss.fragments.v2ex.V2EXFragment;
 import com.example.zhao.geeknewss.fragments.weichat.WeiCharFragment;
 import com.example.zhao.geeknewss.fragments.zhihu.ZhihuMainFragment;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
+    private MenuItem menuItem;
+    private MenuItem searchMenuItem;
+    public static MaterialSearchView viewSearch;
+    private NavigationView viewNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        DrawerLayout layoutDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        viewSearch = findViewById(R.id.view_search);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -51,6 +60,9 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        menuItem = navigationView.getMenu().findItem(R.id.nav_camera);
+        menuItem.setCheckable(true);
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -68,6 +80,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_settings);
+        if (menuItem.getItemId() == R.id.nav_camera) {
+            item.setVisible(true);
+        } else {
+            item.setVisible(false);
+        }
+
+        //关联toolbar的搜索按钮
+        viewSearch.setMenuItem(item);
+        searchMenuItem = item;
         return true;
     }
 
@@ -106,7 +128,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fl_content, new GankFragment()).commit();
         } else if (id == R.id.nav_manage) {
             toolbar.setTitle("数据智汇");
-            fragmentTransaction.replace(R.id.fl_content, new ShuJuZhiHuiFragment()).commit();
+            fragmentTransaction.replace(R.id.fl_content, new ZhihuiFragment()).commit();
         } else if (id == R.id.nav_v2ex) {
             toolbar.setTitle("V2EX");
             fragmentTransaction.replace(R.id.fl_content, new V2EXFragment()).commit();
