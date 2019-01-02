@@ -7,25 +7,23 @@
         <item android:title="资讯" />
         <item
             android:id="@+id/nav_camera"
-
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_drawer_zhihu"
             android:title="知乎日报" />
         <item
             android:id="@+id/nav_gallery"
-
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/ic_drawer_wechat"
             android:title="微信精选" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/ic_drawer_gank"
             android:title="干活集中营" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_drawer_gold"
             android:title="数据智汇" />
         <item
             android:id="@+id/nav_v2ex"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_drawer_vtex"
             android:title="V2EX" />
     </group>
 
@@ -33,15 +31,15 @@
         <menu>
             <item
                 android:id="@+id/nav_collecting"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@mipmap/ic_drawer_like"
                 android:title="收藏" />
             <item
                 android:id="@+id/nav_set"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@mipmap/ic_drawer_setting"
                 android:title="设置" />
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@mipmap/ic_drawer_about"
                 android:title="关于" />
         </menu>
     </item>

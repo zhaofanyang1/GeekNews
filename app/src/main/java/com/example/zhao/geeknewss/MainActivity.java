@@ -17,7 +17,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.example.zhao.geeknewss.fragments.about.AboutFragment;
+import com.example.zhao.geeknewss.fragments.collecting.CollectingFragment;
 import com.example.zhao.geeknewss.fragments.gank.GankFragment;
+import com.example.zhao.geeknewss.fragments.setting.SettingFragment;
 import com.example.zhao.geeknewss.fragments.shujuzhihui.ShuJuZhiHuiFragment;
 import com.example.zhao.geeknewss.fragments.shujuzhihui.ZhihuiFragment;
 import com.example.zhao.geeknewss.fragments.v2ex.V2EXFragment;
@@ -86,7 +89,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             item.setVisible(false);
         }
-
         //关联toolbar的搜索按钮
         viewSearch.setMenuItem(item);
         searchMenuItem = item;
@@ -133,11 +135,15 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle("V2EX");
             fragmentTransaction.replace(R.id.fl_content, new V2EXFragment()).commit();
         } else if (id == R.id.nav_collecting) {
+            toolbar.setTitle("收藏");
+            fragmentTransaction.replace(R.id.fl_content, new CollectingFragment()).commit();
             Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_set) {
-            Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
+            toolbar.setTitle("设置");
+            fragmentTransaction.replace(R.id.fl_content, new SettingFragment()).commit();
         } else if (id == R.id.nav_about) {
-            Toast.makeText(this, "关于", Toast.LENGTH_SHORT).show();
+            toolbar.setTitle("关于");
+            fragmentTransaction.replace(R.id.fl_content, new AboutFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -71,7 +72,6 @@ public class ANDROIDFragment extends BaseFragment<MyView, GankPresenter<MyView>>
         idGankXy.setLayoutManager(new LinearLayoutManager(mActivity));
         idGankXy.setLoadingListener(this);
         presenter.getGank(Request.ANDROIDBEAN, page);
-
     }
 
     @Override

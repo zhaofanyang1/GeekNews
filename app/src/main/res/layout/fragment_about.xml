@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                android:src="@mipmap/bg_about"
+                app:layout_collapseMode="parallax" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorCard"
+                app:contentPadding="3dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:text="作者:Est\t\t(codeest.dev@gmail.com)"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorText"
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorCard"
+                app:contentPadding="3dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:textColor="@color/colorText"
+                    android:text="项目简介:\n极客日报,一个纯粹的阅读App\n为了熟悉当前Android端主流框架的使用,也为了能有一款将新闻、技术文章、福利一网打尽的简洁的阅读应用,利用闲暇时间做了这个项目n(*≧▽≦*)n\n
+        本着学习的目的,该项目会持续迭代与优化,加入更丰富的阅读内容与功能,并不断尝试最新的技术,欢迎star、fork、issue、email"
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorCard"
+                app:contentPadding="3dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
+                <TextView
+                    android:textColor="@color/colorText"
+                    android:text="项目地址:\nhttps://github.com/codeestX/GeekNews"
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_about_award"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorCard"
+                app:contentPadding="3dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
+                <TextView
+                    android:textColor="@color/colorText"
+                    android:text="请作者吃糖(￣▽￣)"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:drawableEnd="@mipmap/ic_alipay"
+                    android:drawableRight="@mipmap/ic_alipay" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorCard"
+                app:contentPadding="3dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
+                <TextView
+                    android:textColor="@color/colorText"
+                    android:text="GeekNews\t\t\tV1.3.0"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
